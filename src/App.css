@@ -1,0 +1,7 @@
+.nav-pills .nav-link.active {
+  background-color: 	#9c29c1;  /* Bootstrap primary color, or change as you like */
+  color: #fff;
+  border-radius: 50rem;       /* Fully rounded pill */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
