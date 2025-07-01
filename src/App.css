@@ -1,7 +1,61 @@
-.nav-pills .nav-link.active {
-  background-color: 	#9c29c1;  /* Bootstrap primary color, or change as you like */
-  color: #fff;
-  border-radius: 50rem;       /* Fully rounded pill */
-  padding-left: 1rem;
-  padding-right: 1rem;
+/* Background */
+.custom-navbar {
+  background-color: #12022F; /* dark purple */
+  
+}
+
+/* Pill container */
+.nav-pill-container {
+  background-color: rgba(120, 78, 196, 0.2);
+  border-radius: 50px;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+}
+
+/* Nav links */
+.nav-link-custom {
+  color: #E0D6F8 !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link-custom.active {
+  background-color: white !important;
+  color: black !important;
+  font-weight: 600;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-circle {
+  color: #E0D6F8;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.icon-circle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* Offcanvas background */
+.custom-offcanvas .offcanvas-body {
+  background-color: #12022F;
 }
