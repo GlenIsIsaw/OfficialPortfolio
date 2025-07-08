@@ -14,14 +14,16 @@ const HeroSection = () => {
         software developer dedicated to turning complex problems into elegant
         solutions.
       </p>
-      <div className="mt-4 d-flex gap-3 flex-wrap justify-content-center">
-        <a href="#contact" className="btn btn-primary rounded-pill px-4 py-2">
-          Let's Talk
-        </a>
-        <a href="#about" className="btn btn-light rounded-pill px-4 py-2">
-          Learn More
-        </a>
-      </div>
+     <div className="mt-4 d-flex gap-3 flex-wrap justify-content-center">
+  <a href="#contact" className="violet-button">
+    Let's Talk
+  </a>
+  <a href="#about" className="violet-button light">
+    Learn More
+  </a>
+</div>
+
+      
     </section>
   );
 };

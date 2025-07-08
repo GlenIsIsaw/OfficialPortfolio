@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
-import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 const PortfolioNavbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -31,7 +36,7 @@ const PortfolioNavbar = () => {
       className="py-4 px-2 custom-navbar"
     >
       <Container fluid>
-        <Navbar.Brand className="fw-bold fs-4 text-white" href="#home">
+        <Navbar.Brand className="fw-bold fs-4 text-white" href="#">
           Glen Pabico
         </Navbar.Brand>
 
@@ -52,7 +57,10 @@ const PortfolioNavbar = () => {
               onHide={handleCloseOffcanvas}
             >
               <Offcanvas.Header closeButton closeVariant="dark">
-                <Offcanvas.Title id="offcanvasNavbarLabel" className="text-dark">
+                <Offcanvas.Title
+                  id="offcanvasNavbarLabel"
+                  className="text-dark"
+                >
                   Glen Pabico
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -70,10 +78,33 @@ const PortfolioNavbar = () => {
                   ))}
                 </Nav>
                 <div className="d-flex justify-content-center gap-3 mt-4">
-                  <a href="#" className="icon-circle"><FaFacebookF /></a>
-                  <a href="#" className="icon-circle"><FaInstagram /></a>
-                  <a href="#" className="icon-circle"><FaLinkedinIn /></a>
-                  <a href="#" className="icon-circle"><FaGithub /></a>
+                  <a
+                    href="https://www.facebook.com/glen.pabico/"
+                    className="icon-circle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    <FaFacebookF />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/glen-pabico/"
+                    className="icon-circle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedinIn />
+                  </a>
+                  <a
+                    href="https://github.com/GlenIsIsaw"
+                    className="icon-circle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub />
+                  </a>
                 </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -85,7 +116,7 @@ const PortfolioNavbar = () => {
           id="basic-navbar-nav"
           className="justify-content-center d-none d-lg-flex"
         >
-          <Nav className="nav-pills nav-pill-container">
+          <Nav className="nav-pills nav-pill-container px-4 py-2">
             {["home", "about", "projects", "contact"].map((section) => (
               <Nav.Link
                 key={section}
@@ -99,10 +130,33 @@ const PortfolioNavbar = () => {
         </Navbar.Collapse>
 
         <div className="d-none d-lg-flex social-icons gap-2">
-          <a href="#" className="icon-circle"><FaFacebookF /></a>
-          <a href="#" className="icon-circle"><FaInstagram /></a>
-          <a href="#" className="icon-circle"><FaLinkedinIn /></a>
-          <a href="#" className="icon-circle"><FaGithub /></a>
+          <a
+            href="https://www.facebook.com/glen.pabico/"
+            className="icon-circle"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/glen-pabico/"
+            className="icon-circle"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="https://github.com/GlenIsIsaw"
+            className="icon-circle"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
         </div>
       </Container>
     </Navbar>

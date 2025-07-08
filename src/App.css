@@ -89,3 +89,58 @@
   width: 300px;
   height: 420px;
 }
+
+.violet-card {
+  background: linear-gradient(145deg, #1f003d, #320062);
+  border: none;
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.violet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(160, 120, 255, 0.3);
+}
+
+.violet-card .btn {
+  background-color: #a078ff;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.violet-card .btn:hover {
+  background-color: #fff;
+  color: #320062;
+}
+
+/* Glass Button Consistent with Card */
+.violet-button {
+  background-color: #a078ff;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.violet-button:hover {
+  background-color: #fff;
+  color: #320062;
+  transform: translateY(-2px);
+}
+
+.violet-button.light {
+  background-color: #ffffff;
+  color: #320062;
+}
+
+.violet-button.light:hover {
+  background-color: #a078ff;
+  color: #ffffff;
+}
+
