@@ -1,7 +1,6 @@
 /* Background */
 .custom-navbar {
-  background-color: #12022F; /* dark purple */
-  
+  background-color: #12022F;
 }
 
 /* Pill container */
@@ -17,18 +16,23 @@
   color: #E0D6F8 !important;
   font-weight: 500;
   padding: 0.5rem 1rem;
-  border-radius: 50px;
+  border-radius: 50px !important;
   transition: all 0.3s ease;
 }
 
-.nav-link-custom:hover {
+.nav-link-custom:hover,
+.nav-link-custom:focus {
   background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
 }
 
-.nav-link-custom.active {
-  background-color: white !important;
-  color: black !important;
+/* ✅ Stronger fix for ScrollSpy active pill */
+.nav-pills .nav-link.nav-link-custom.active,
+.nav-pills .show > .nav-link.nav-link-custom {
+  background-color: #ffffff !important;
+  color: #000000 !important;
   font-weight: 600;
+  border-radius: 50px !important;
 }
 
 /* Social icons */
@@ -58,4 +62,30 @@
 /* Offcanvas background */
 .custom-offcanvas .offcanvas-body {
   background-color: #12022F;
+}
+
+.hero-section {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1b0036, #3b008f);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/wave-background.svg') center/cover no-repeat;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.hero-section > * {
+  z-index: 1;
+}
+
+.profile-img {
+  width: 300px;
+  height: 420px;
 }
