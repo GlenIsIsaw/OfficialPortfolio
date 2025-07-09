@@ -1,11 +1,24 @@
 import React from "react";
+import { ReactTyped } from "react-typed";
 // import ProfileImg from "../assets/PABICO, GLEN S SFTG CNSC _ 7212 (1).png";
 
 const HeroSection = () => {
   return (
     <section className="hero-section d-flex flex-column justify-content-center align-items-center text-center text-white">
       <h2>Hello! I'm Glen</h2>
-      <p className="lead">Software Developer</p>
+       <p className="lead">
+        <ReactTyped
+          strings={[
+            "Front - End Web Developer",
+            "Web Designer",
+            "UI/UX Designer",
+            "IT and Technical Support"
+          ]}
+          typeSpeed={60}
+          backSpeed={30}
+          loop
+        />
+      </p>
       <h1 className="fw-bold display-5">
         Crafting Tomorrow's <br /> Solutions, Today
       </h1>

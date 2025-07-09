@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Container } from "react-bootstrap";
 import * as bootstrap from "bootstrap";
 import Navbar from "./components/Navbar";
+import Cover from "./components/Cover";
 import HeroSection from "./pages/HeroSection";
 import Home from "./pages/Home";
 
@@ -36,16 +37,17 @@ function App() {
       <Navbar />
       <HeroSection />
       <Container fluid>
-        <section id="home" className="py-5">
+        <section id="home" className="py-3">
           <Home />
+          <Cover />
         </section>
-        <section id="about" className="py-5">
+        <section id="about" className="py-3">
           <h1>About Section</h1>
         </section>
-        <section id="projects" className="py-5">
+        <section id="projects" className="py-3">
           <h1>Projects Section</h1>
         </section>
-        <section id="contact" className="py-5">
+        <section id="contact" className="py-3">
           <h1>Contact Section</h1>
         </section>
       </Container>
