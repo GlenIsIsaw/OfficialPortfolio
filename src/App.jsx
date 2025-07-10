@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Cover from "./components/Cover";
 import HeroSection from "./pages/HeroSection";
 import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
   useEffect(() => {
@@ -35,14 +36,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <Container fluid>
-        <section id="home" className="py-3">
+      <section id="home" className="">
+        <HeroSection />
+        <Container fluid>
           <Home />
           <Cover />
-        </section>
+        </Container>
+      </section>
+      <Container fluid>
         <section id="about" className="py-3">
-          <h1>About Section</h1>
+         <About />
         </section>
         <section id="projects" className="py-3">
           <h1>Projects Section</h1>

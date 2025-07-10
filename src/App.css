@@ -1,6 +1,6 @@
 /* Background */
 .custom-navbar {
-  background-color: #12022F;
+  background-color: #12022f;
 }
 
 /* Pill container */
@@ -13,7 +13,7 @@
 
 /* Nav links */
 .nav-link-custom {
-  color: #E0D6F8 !important;
+  color: #e0d6f8 !important;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 50px !important;
@@ -42,7 +42,7 @@
 }
 
 .icon-circle {
-  color: #E0D6F8;
+  color: #e0d6f8;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   width: 36px;
@@ -61,7 +61,7 @@
 
 /* Offcanvas background */
 .custom-offcanvas .offcanvas-body {
-  background-color: #12022F;
+  background-color: #12022f;
 }
 
 .hero-section {
@@ -76,7 +76,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url('/wave-background.svg') center/cover no-repeat;
+  background: url("/wave-background.svg") center/cover no-repeat;
   opacity: 0.2;
   z-index: 0;
 }
@@ -144,3 +144,171 @@
   color: #ffffff;
 }
 
+.about-section {
+  background-color: #ffffff; /* white background */
+}
+
+.accent-text {
+  color: #320062; /* palette accent color */
+}
+
+.accent-button {
+  background-color: #a078ff;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease; /* Changed to 'all' to include transform */
+}
+
+.accent-button:hover {
+  background-color: #fff;
+  color: #320062;
+  border: 1px solid #12022f;
+  transform: translateY(-3px); /* Same lift effect as icons */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds subtle shadow */
+}
+
+.icon-circle {
+  background-color:  #320062;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-circle:hover {
+  background-color: #333;
+  transform: translateY(-3px);
+}
+
+/* Experience Timeline Styles */
+.experience-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.experience-item {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #320062;
+  border: 3px solid white;
+  z-index: 2;
+}
+
+.experience-timeline::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #320062;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.experience-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--bs-dark);
+  margin: 0;
+}
+
+.experience-period {
+  color: var(--bs-gray-600);
+  font-size: 0.9rem;
+}
+
+.experience-description {
+  color: var(--bs-gray-700);
+  margin-bottom: 0;
+}
+
+.experience-divider {
+  height: 1px;
+  background: var(--bs-gray-200);
+  margin: 20px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .experience-period {
+    align-self: flex-end;
+  }
+}
+
+/* Capabilities Section Styles */
+.capabilities-description {
+  color: var(--bs-gray-700);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.skills-container {
+  margin-top: 1.5rem;
+}
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-pill {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #a078ff;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--bs-gray-200);
+  transition: all 0.2s ease;
+}
+
+.skill-pill:hover {
+  background-color: #fff;
+  color: #320062;
+  border: 1px solid #12022f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .skills-row {
+    justify-content: center;
+  }
+
+  .capabilities-description {
+    text-align: center;
+  }
+}
