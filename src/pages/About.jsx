@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { FaLinkedinIn, FaGithub, FaFacebookF } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 const About = () => {
   const capabilities = {
@@ -29,7 +29,7 @@ const About = () => {
 
   return (
     <section className="about-section py-5">
-      <Container fluid>
+      <Container>
         {/* About Me Section */}
         <Row className="align-items-center justify-content-center">
           <Col

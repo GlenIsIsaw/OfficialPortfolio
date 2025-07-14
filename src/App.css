@@ -312,3 +312,56 @@
     text-align: center;
   }
 }
+
+/* FeaturedProject.css */
+
+.featured-projects-section {
+  background-color: #12022f;
+}
+
+.project-section {
+  background-color: #1a093b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(160, 120, 255, 0.15);
+}
+
+.violet-button {
+  background-color: #a078ff;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.violet-button:hover {
+  background-color: #fff;
+  color: #320062;
+}
+
+.custom-badge {
+  background-color: #a078ff;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+}
+
+.project-img {
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.carousel-indicators {
+  margin-top: 1rem; /* adjust as needed */
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #a078ff; /* violet to match palette */
+}

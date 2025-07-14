@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Cover from "./components/Cover";
 import HeroSection from "./pages/HeroSection";
 import Home from "./pages/Home";
+import Project from "./pages/Project";
 import About from "./pages/About";
 
 function App() {
@@ -40,20 +41,18 @@ function App() {
         <HeroSection />
         <Container fluid>
           <Home />
-          <Cover />
+          {/*  <Cover />  */}
         </Container>
       </section>
-      <Container fluid>
-        <section id="about" className="py-3">
-         <About />
-        </section>
-        <section id="projects" className="py-3">
-          <h1>Projects Section</h1>
-        </section>
-        <section id="contact" className="py-3">
-          <h1>Contact Section</h1>
-        </section>
-      </Container>
+      <section id="about" className="py-3">
+        <About />
+      </section>
+      <section id="projects" className="py-3">
+        <Project />
+      </section>
+      <section id="contact" className="py-3">
+        <h1>Contact Section</h1>
+      </section>
     </>
   );
 }
