@@ -1,4 +1,5 @@
 import React from "react";
+import TechStack from "../components/TechStack";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
@@ -91,24 +92,13 @@ const About = () => {
             md={4}
             className="text-md-start text-center mb-4 mb-md-0"
           >
-            <h1 className="display-4 fw-bold accent-text">My Capabilities</h1>
+            <h1 className="display-4 fw-bold accent-text">Tech Stacks</h1>
           </Col>
           <Col xs={12} md={8} className="text-md-start">
-            <p className="capabilities-description mb-4">
+            <p className="capabilities-description">
               {capabilities.description}
             </p>
-
-            <div className="skills-container">
-              {capabilities.skills.map((skillRow, rowIndex) => (
-                <div key={rowIndex} className="skills-row mb-3">
-                  {skillRow.map((skill, skillIndex) => (
-                    <span key={skillIndex} className="skill-pill">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
+             <TechStack/>
           </Col>
         </Row>
         <hr />

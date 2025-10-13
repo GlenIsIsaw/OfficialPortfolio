@@ -365,3 +365,106 @@
 .carousel-indicators [data-bs-target] {
   background-color: #a078ff; /* violet to match palette */
 }
+
+/* In your CSS file */
+.tool-card {
+  border: 1px solid #320062;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tool-card:hover {
+  box-shadow: 0 0 15px rgba(50, 0, 98, 0.2);
+  transform: translateY(-5px);
+  border-color: #4a0092;
+}
+
+/*
+
+/* src/components/Footer.css
+.glen-footer {
+  background-color: #FFFFFF;
+  padding: 2rem 0;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto;
+}
+
+.glen-footer-brand {
+  display: flex;
+  align-items: center;
+}
+
+.glen-footer-brand-name {
+  color: #160733;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.glen-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.glen-footer-nav-link {
+  color: #160733;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.glen-footer-nav-link:hover {
+  color: #8B5FBF;
+  text-decoration: none;
+}
+
+.glen-footer-nav-separator {
+  color: #160733;
+  opacity: 0.3;
+  font-weight: 300;
+}
+
+/* Responsive Design 
+@media (max-width: 768px) {
+  .glen-footer {
+    padding: 1.5rem 0;
+  }
+  
+  .glen-footer-brand {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .glen-footer-nav {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .glen-footer-brand-name {
+    font-size: 1.3rem;
+  }
+  
+  .glen-footer-nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .glen-footer-nav {
+    gap: 0.8rem;
+  }
+  
+  .glen-footer-nav-link {
+    font-size: 0.85rem;
+  }
+  
+  .glen-footer-nav-separator {
+    display: none;
+  }
+}
+*/

@@ -10,6 +10,8 @@ import HeroSection from "./pages/HeroSection";
 import Home from "./pages/Home";
 import Project from "./pages/Project";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
@@ -47,11 +49,11 @@ function App() {
       <section id="about" className="py-3">
         <About />
       </section>
-      <section id="projects" className="py-3">
+      <section id="projects" className="">
         <Project />
       </section>
-      <section id="contact" className="py-3">
-        <h1>Contact Section</h1>
+      <section id="contact" className="">
+        <Contact />
       </section>
     </>
   );

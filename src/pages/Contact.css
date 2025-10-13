@@ -1,0 +1,179 @@
+/* src/styles/ContactModern.css */
+.contact-modern-wrapper {
+  background: linear-gradient(135deg, #23004A 0%, #0E0424 100%);
+  min-height: 100vh;
+  padding: 80px 0;
+}
+
+.contact-modern-header {
+  margin-bottom: 60px;
+}
+
+.contact-modern-title {
+  color: #FFFFFF;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 8px rgba(155, 95, 255, 0.3);
+}
+
+.contact-modern-info-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(188, 167, 255, 0.2);
+  border-radius: 16px;
+  color: #FFFFFF;
+}
+
+.contact-modern-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.contact-modern-info-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(188, 167, 255, 0.3);
+}
+
+.contact-modern-info-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.contact-modern-info-title {
+  color: #9B5FFF;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.contact-modern-info-text {
+  color: #E4E4E4;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-modern-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-modern-label {
+  color: #23004A;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-modern-input {
+  background: #FFFFFF;
+  border: 2px solid #E4E4E4;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #23004A;
+}
+
+.contact-modern-input:focus {
+  border-color: #9B5FFF;
+  box-shadow: 0 0 0 0.2rem rgba(155, 95, 255, 0.25);
+  background: #FFFFFF;
+}
+
+.contact-modern-input.is-invalid {
+  border-color: #dc3545;
+}
+
+.contact-modern-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-modern-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.contact-modern-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9B5FFF, transparent);
+  margin: 2rem 0;
+}
+
+.contact-modern-help-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.contact-modern-submit-btn {
+  background: linear-gradient(135deg, #9B5FFF 0%, #7B3FE4 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-modern-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8B4FFF 0%, #6B2FD4 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(155, 95, 255, 0.4);
+}
+
+.contact-modern-submit-btn:active {
+  transform: translateY(0);
+}
+
+.contact-modern-submit-btn:disabled {
+  background: #BCA7FF;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-modern-alert {
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-modern-wrapper {
+    padding: 40px 0;
+  }
+  
+  .contact-modern-title {
+    font-size: 2.2rem;
+  }
+  
+  .contact-modern-info-card,
+  .contact-modern-form-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Animation for form elements */
+.contact-modern-input {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
