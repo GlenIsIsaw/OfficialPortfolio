@@ -1,100 +1,62 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
 import {
   FaReact,
   FaVuejs,
-  FaAngular,
   FaNodeJs,
-  FaPython,
   FaBootstrap,
   FaCss3,
   FaHtml5,
   FaGitAlt,
   FaPhp,
   FaLaravel,
-  FaFigma
+  FaFigma,
+  FaPython,
 } from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiGraphql,
-  SiDjango,
-  SiFlask,
-  SiTailwindcss,
-  SiRedux,
-} from "react-icons/si";
-import { VscVscodeInsiders } from "react-icons/vsc";
+import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { RiJavascriptLine } from "react-icons/ri";
 
 const FrameworksToolsSection = () => {
-  // Custom purple color palette
-  const purpleTheme = {
-    primary: "#320062",
-    light: "#f5f0fa",
-    hover: "#4a0092",
-    glow: "rgba(50, 0, 98, 0.2)",
-  };
+  const [isPaused, setIsPaused] = useState(false); // 👈 animation control
 
   const tools = [
-    { icon: <FaHtml5 size={40} />, name: "HTML" },
-    { icon: <FaCss3 size={40} />, name: "CSS" },
-    { icon: <RiJavascriptLine size={40} />, name: "JavaScript" },
-    { icon: <FaReact size={40} />, name: "React" },
-    { icon: <FaPhp size={40} />, name: "Php" },
-    { icon: <FaLaravel size={40} />, name: "Laravel" },
-    { icon: <FaVuejs size={40} />, name: "Vue" },
-    { icon: <FaNodeJs size={40} />, name: "Node.js" },
-    { icon: <FaBootstrap size={40} />, name: "Bootstrap" },
-    { icon: <SiTailwindcss size={40} />, name: "Tailwind" },
-    { icon: <VscVscodeInsiders size={40} />, name: "VSCode" },
-    { icon: <FaGitAlt size={40} />, name: "Git" },
-    { icon: <FaFigma size={40} />, name: "Figma" }
+    { icon: <FaHtml5 size={50} />, name: "HTML" },
+    { icon: <FaCss3 size={50} />, name: "CSS" },
+    { icon: <RiJavascriptLine size={50} />, name: "JavaScript" },
+    { icon: <FaReact size={50} />, name: "React" },
+    { icon: <FaPhp size={50} />, name: "PHP" },
+    { icon: <FaLaravel size={50} />, name: "Laravel" },
+    { icon: <FaVuejs size={50} />, name: "Vue" },
+    { icon: <FaNodeJs size={50} />, name: "Node.js" },
+    { icon: <FaBootstrap size={50} />, name: "Bootstrap" },
+    { icon: <SiTailwindcss size={50} />, name: "Tailwind" },
+    { icon: <FaPython size={50} />, name: "Python" },
+    { icon: <SiNextdotjs size={50} />, name: "Next.js" },
+    { icon: <FaFigma size={50} />, name: "Figma" },
+    { icon: <FaGitAlt size={50} />, name: "Git" },
   ];
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col xs={12} className="text-center">
-          {/* <h2 className="h3" style={{ color: purpleTheme.primary }}>
-            Powering your favorite frameworks and tools
-          </h2> */}
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        {tools.map((tool, index) => (
-          <Col key={index} xs={4} sm={3} md={2} className="text-center mb-4">
-            <div
-              className="p-3 bg-white rounded position-relative"
-              style={{
-                border: `1px solid ${purpleTheme.primary}`,
-                transition: "all 0.3s ease",
-                height: "100%",
-                cursor: "pointer",
-                zIndex: 1,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 15px ${purpleTheme.glow}`;
-                e.currentTarget.style.transform = "translateY(-5px)";
-                e.currentTarget.style.borderColor = purpleTheme.hover;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "none";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.borderColor = purpleTheme.primary;
-              }}
-            >
-              <div style={{ color: purpleTheme.primary }}>{tool.icon}</div>
-              <p
-                className="mt-2 mb-0 small"
-                style={{ color: purpleTheme.primary }}
-              >
-                {tool.name}
-              </p>
-            </div>
-          </Col>
+    <div className="tech-marquee">
+      <div
+        className="tech-track"
+        style={{
+          animationPlayState: isPaused ? "paused" : "running", // 👈 control animation
+        }}
+      >
+        {[...tools, ...tools].map((tool, index) => (
+          <div
+            className="tech-item"
+            key={index}
+            onMouseEnter={() => setIsPaused(true)}   // 👈 pause on hover (desktop)
+            onMouseLeave={() => setIsPaused(false)}  // 👈 resume on hover out
+            onClick={() => setIsPaused(!isPaused)}   // 👈 toggle pause on mobile tap
+          >
+            <div className="tech-icon">{tool.icon}</div>
+            <p className="tech-name">{tool.name}</p>
+          </div>
         ))}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 
