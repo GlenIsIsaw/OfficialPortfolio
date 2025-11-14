@@ -71,7 +71,7 @@ const Contact = () => {
     
     const newErrors = {};
     Object.keys(formData).forEach(key => {
-      if (key !== 'lastName') { // lastName is optional
+      if (key !== 'lastName') {
         const error = validateField(key, formData[key]);
         if (error) {
           newErrors[key] = error;
@@ -110,69 +110,100 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-modern-wrapper">
+    <div className="contact-modern-wrapper" id="contact">
       <Container>
         <Row className="justify-content-center">
           <Col lg={10}>
             <div className="contact-modern-header text-center mb-5">
-              <h1 className="contact-modern-title">Get In Touch With Us Now!</h1>
+              <h1 className="contact-modern-title">Let's Create Something Amazing</h1>
+              <p className="contact-modern-subtitle">Get in touch and let's discuss your project</p>
             </div>
             
-            <Row>
-              {/* Contact Information Side */}
-              <Col md={5} className="mb-4">
-                <Card className="contact-modern-info-card h-100">
+            <Row className="g-4">
+              {/* Contact Information Card - Modern Redesign */}
+              <Col md={5}>
+                <Card className="contact-info-modern">
                   <Card.Body className="p-4">
-                    <div className="contact-modern-info-section">
-                      <h4 className="contact-modern-info-title">Phone Number</h4>
-                      <p className="contact-modern-info-text">+63 951 971 3958</p>
-                    </div>
-
-                    <div className="contact-modern-info-section">
-                      <h4 className="contact-modern-info-title">Location</h4>
-                      <p className="contact-modern-info-text">
-                        Daet, Camarines Norte 4600
+                    <div className="contact-info-header">
+                      <h3 className="contact-info-title">Contact Information</h3>
+                      <p className="contact-info-description">
+                        Reach out through any of these channels
                       </p>
                     </div>
 
-                    <div className="contact-modern-info-section">
-                      <h4 className="contact-modern-info-title">Email</h4>
-                      <p className="contact-modern-info-text">
-                        glenpabico19@gmail.com<br />
-                       glenpabico20@gmail.com
-                      </p>
+                    <div className="contact-info-content">
+                      <div className="contact-item">
+                        <div className="contact-icon-wrapper">
+                          <div className="contact-icon phone"></div>
+                        </div>
+                        <div className="contact-details">
+                          <h4 className="contact-item-title">Phone</h4>
+                          <p className="contact-item-text">+63 951 971 3958</p>
+                        </div>
+                      </div>
+
+                      <div className="contact-item">
+                        <div className="contact-icon-wrapper">
+                          <div className="contact-icon location"></div>
+                        </div>
+                        <div className="contact-details">
+                          <h4 className="contact-item-title">Location</h4>
+                          <p className="contact-item-text">Daet, Camarines Norte 4600</p>
+                        </div>
+                      </div>
+
+                      <div className="contact-item">
+                        <div className="contact-icon-wrapper">
+                          <div className="contact-icon email"></div>
+                        </div>
+                        <div className="contact-details">
+                          <h4 className="contact-item-title">Email</h4>
+                          <p className="contact-item-text">glenpabico19@gmail.com</p>
+                          <p className="contact-item-text">glenpabico20@gmail.com</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="contact-hours">
+                      <h4 className="hours-title">Response Time</h4>
+                      <p className="hours-text">Typically within 24 hours</p>
                     </div>
                   </Card.Body>
                 </Card>
               </Col>
 
-              {/* Contact Form Side */}
+              {/* Contact Form - Modern Redesign */}
               <Col md={7}>
-                <Card className="contact-modern-form-card">
+                <Card className="contact-form-modern">
                   <Card.Body className="p-4">
+                    <div className="form-header">
+                      <h3 className="form-title">Send a Message</h3>
+                      <p className="form-description">Fill out the form below and I'll get back to you soon</p>
+                    </div>
+
                     {isSubmitted && (
-                      <Alert variant="success" className="contact-modern-alert">
-                        <strong>Message Sent Successfully!</strong> We'll get back to you soon.
+                      <Alert variant="success" className="modern-alert success">
+                        <strong>Message Sent!</strong> I'll get back to you within 24 hours.
                       </Alert>
                     )}
 
                     {errors.submit && (
-                      <Alert variant="danger" className="contact-modern-alert">
+                      <Alert variant="danger" className="modern-alert error">
                         {errors.submit}
                       </Alert>
                     )}
 
-                    <Form onSubmit={handleSubmit}>
-                      <Row>
+                    <Form onSubmit={handleSubmit} className="modern-form">
+                      <Row className="g-3">
                         <Col md={6}>
-                          <Form.Group className="contact-modern-form-group mb-3">
-                            <Form.Label className="contact-modern-label">
-                              First Name *
+                          <Form.Group className="form-group-modern">
+                            <Form.Label className="form-label-modern">
+                              First Name <span className="required">*</span>
                             </Form.Label>
                             <Form.Control
                               type="text"
                               name="firstName"
-                              placeholder="Enter your first name"
+                              placeholder="Your first name"
                               value={formData.firstName}
                               onChange={handleInputChange}
                               onBlur={(e) => {
@@ -180,40 +211,40 @@ const Contact = () => {
                                 setErrors(prev => ({ ...prev, firstName: error }));
                               }}
                               isInvalid={!!errors.firstName}
-                              className="contact-modern-input"
+                              className="form-input-modern"
                             />
-                            <Form.Control.Feedback type="invalid" className="contact-modern-error">
+                            <Form.Control.Feedback type="invalid" className="form-error-modern">
                               {errors.firstName}
                             </Form.Control.Feedback>
                           </Form.Group>
                         </Col>
                         <Col md={6}>
-                          <Form.Group className="contact-modern-form-group mb-3">
-                            <Form.Label className="contact-modern-label">
+                          <Form.Group className="form-group-modern">
+                            <Form.Label className="form-label-modern">
                               Last Name
                             </Form.Label>
                             <Form.Control
                               type="text"
                               name="lastName"
-                              placeholder="Enter your last name"
+                              placeholder="Your last name"
                               value={formData.lastName}
                               onChange={handleInputChange}
-                              className="contact-modern-input"
+                              className="form-input-modern"
                             />
                           </Form.Group>
                         </Col>
                       </Row>
 
-                      <Row>
+                      <Row className="g-3">
                         <Col md={6}>
-                          <Form.Group className="contact-modern-form-group mb-3">
-                            <Form.Label className="contact-modern-label">
-                              Mobile No *
+                          <Form.Group className="form-group-modern">
+                            <Form.Label className="form-label-modern">
+                              Mobile Number <span className="required">*</span>
                             </Form.Label>
                             <Form.Control
                               type="tel"
                               name="mobileNo"
-                              placeholder="Enter your mobile number"
+                              placeholder="Your mobile number"
                               value={formData.mobileNo}
                               onChange={handleInputChange}
                               onBlur={(e) => {
@@ -221,22 +252,22 @@ const Contact = () => {
                                 setErrors(prev => ({ ...prev, mobileNo: error }));
                               }}
                               isInvalid={!!errors.mobileNo}
-                              className="contact-modern-input"
+                              className="form-input-modern"
                             />
-                            <Form.Control.Feedback type="invalid" className="contact-modern-error">
+                            <Form.Control.Feedback type="invalid" className="form-error-modern">
                               {errors.mobileNo}
                             </Form.Control.Feedback>
                           </Form.Group>
                         </Col>
                         <Col md={6}>
-                          <Form.Group className="contact-modern-form-group mb-3">
-                            <Form.Label className="contact-modern-label">
-                              Email ID *
+                          <Form.Group className="form-group-modern">
+                            <Form.Label className="form-label-modern">
+                              Email Address <span className="required">*</span>
                             </Form.Label>
                             <Form.Control
                               type="email"
                               name="email"
-                              placeholder="Enter your email address"
+                              placeholder="your.email@example.com"
                               value={formData.email}
                               onChange={handleInputChange}
                               onBlur={(e) => {
@@ -244,40 +275,38 @@ const Contact = () => {
                                 setErrors(prev => ({ ...prev, email: error }));
                               }}
                               isInvalid={!!errors.email}
-                              className="contact-modern-input"
+                              className="form-input-modern"
                             />
-                            <Form.Control.Feedback type="invalid" className="contact-modern-error">
+                            <Form.Control.Feedback type="invalid" className="form-error-modern">
                               {errors.email}
                             </Form.Control.Feedback>
                           </Form.Group>
                         </Col>
                       </Row>
 
-                      <div className="contact-modern-divider"></div>
-
-                      <Form.Group className="contact-modern-form-group mb-4">
-                        <Form.Label className="contact-modern-label">
-                          Message
+                      <Form.Group className="form-group-modern">
+                        <Form.Label className="form-label-modern">
+                          Your Message
                         </Form.Label>
                         <Form.Control
                           as="textarea"
                           rows={4}
                           name="message"
-                          placeholder="Type your message here..."
+                          placeholder="Tell me about your project, ideas, or questions..."
                           value={formData.message}
                           onChange={handleInputChange}
-                          className="contact-modern-input contact-modern-textarea"
+                          className="form-input-modern form-textarea-modern"
                         />
                       </Form.Group>
 
-                      <Form.Group className="contact-modern-form-group mb-3">
-                        <Form.Label className="contact-modern-label">
-                          Please type "webdesign" *
+                      <Form.Group className="form-group-modern">
+                        <Form.Label className="form-label-modern">
+                          Spam Protection <span className="required">*</span>
                         </Form.Label>
                         <Form.Control
                           type="text"
                           name="spamCheck"
-                          placeholder="Type 'webdesign' here"
+                          placeholder="Type 'webdesign' to continue"
                           value={formData.spamCheck}
                           onChange={handleInputChange}
                           onBlur={(e) => {
@@ -285,29 +314,29 @@ const Contact = () => {
                             setErrors(prev => ({ ...prev, spamCheck: error }));
                           }}
                           isInvalid={!!errors.spamCheck}
-                          className="contact-modern-input"
+                          className="form-input-modern"
                         />
-                        <Form.Control.Feedback type="invalid" className="contact-modern-error">
+                        <Form.Control.Feedback type="invalid" className="form-error-modern">
                           {errors.spamCheck}
                         </Form.Control.Feedback>
-                        <Form.Text className="contact-modern-help-text">
-                          This helps us prevent spam. Thank you.
+                        <Form.Text className="form-help-modern">
+                          Type "webdesign" to verify you're human
                         </Form.Text>
                       </Form.Group>
 
-                      <div className="d-grid">
+                      <div className="form-actions">
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="contact-modern-submit-btn"
+                          className="submit-btn-modern"
                         >
                           {isSubmitting ? (
                             <>
                               <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                              Sending...
+                              Sending Message...
                             </>
                           ) : (
-                            'Submit'
+                            'Send Message'
                           )}
                         </Button>
                       </div>

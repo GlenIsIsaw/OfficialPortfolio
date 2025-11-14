@@ -1,3 +1,13 @@
+/* Fix for fixed navbar spacing */
+body {
+  padding-top: 80px; /* Adjust based on your navbar height */
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Background */
 .custom-navbar {
   background-color: #12022f;
@@ -15,9 +25,9 @@
 .nav-link-custom {
   color: #e0d6f8 !important;
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 50px !important;
-  transition: all 0.3s ease;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform-origin: center;
 }
 
 .nav-link-custom:hover,
@@ -33,6 +43,18 @@
   color: #000000 !important;
   font-weight: 600;
   border-radius: 50px !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* Section spacing */
+#home,
+#about,
+#projects,
+#contact {
+  scroll-margin-top: 80px;
 }
 
 /* Social icons */
@@ -169,7 +191,7 @@
 }
 
 .icon-circle {
-  background-color:  #320062;
+  background-color: #320062;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -182,7 +204,7 @@
   transform: translateY(-3px);
 }
 
-/* Experience Timeline Styles */
+/* Experience Timeline Styles 
 .experience-timeline {
   position: relative;
   padding-left: 30px;
@@ -250,7 +272,7 @@
   margin: 20px 0;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments 
 @media (max-width: 767.98px) {
   .experience-header {
     flex-direction: column;
@@ -260,6 +282,178 @@
 
   .experience-period {
     align-self: flex-end;
+  }
+}
+  */
+
+/* Modern GitHub-inspired Experience Section */
+.experience-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience-card {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(to bottom, #a078ff, #320062);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover {
+  border-color: #a078ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(160, 120, 255, 0.15);
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.experience-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.experience-icon {
+  flex-shrink: 0;
+}
+
+.icon-circle-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a078ff, #320062);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.experience-title-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.experience-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #320062;
+  margin: 0;
+}
+
+.experience-badge {
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #320062;
+  white-space: nowrap;
+}
+
+.experience-content {
+  margin-bottom: 1rem;
+}
+
+.experience-description {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.experience-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #320062;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: #a078ff;
+  color: white;
+  border-color: #a078ff;
+}
+
+.experience-footer {
+  border-top: 1px solid #f1f3f4;
+  padding-top: 1rem;
+}
+
+.experience-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.stat-item svg {
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 767.98px) {
+  .experience-card {
+    padding: 1.25rem;
+  }
+
+  .experience-title-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-card-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .experience-icon {
+    align-self: flex-start;
   }
 }
 
@@ -507,7 +701,6 @@
   animation: scroll 45s linear infinite;
   width: max-content;
   animation-play-state: running;
-
 }
 
 .tech-item {
@@ -550,3 +743,15 @@
   }
 }
 
+/* Optional: Add a subtle pulse animation for the active state */
+@keyframes gentlePulse {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

@@ -80,7 +80,7 @@ const FeaturedProjects = () => {
         </p>
 
         {isMobile ? (
-          <Carousel interval={6000} indicators controls fade>
+          <Carousel className="py-5" interval={6000} indicators controls fade>
             {projects.map((project, idx) => (
               <Carousel.Item key={idx}>
                 <ProjectSection project={project} />
