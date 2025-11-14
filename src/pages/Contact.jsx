@@ -1,6 +1,7 @@
 // src/pages/Contact.jsx
 import { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
@@ -17,6 +18,13 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // ⚡ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚡
+  const EMAILJS_CONFIG = {
+    SERVICE_ID: 'service_0sjyrne',        // From Email Services
+    TEMPLATE_ID: 'template_x8zegml',     // From Email Templates
+    PUBLIC_KEY: 'SSeudS9KSMQLCvQjV'           // From API Keys
+  };
+
   const validateField = (name, value) => {
     let error = '';
 
@@ -26,13 +34,18 @@ const Contact = () => {
           error = 'First name is required';
         }
         break;
-      case 'mobileNo':
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-        const cleanPhone = value.replace(/[\s\-\(\)]/g, '');
-        if (!phoneRegex.test(cleanPhone) || cleanPhone.length < 10) {
-          error = 'Please enter a valid mobile number';
-        }
-        break;
+case 'mobileNo':
+  // Philippine mobile number validation - now expecting numbers only
+  const phoneRegex = /^[0-9]{10,11}$/;
+  let normalizedPhone = value;
+  
+  // Remove any non-numeric characters (just in case)
+  normalizedPhone = normalizedPhone.replace(/\D/g, '');
+  
+  if (!phoneRegex.test(normalizedPhone) || !normalizedPhone.startsWith('9')) {
+    error = 'Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 9)';
+  }
+  break;
       case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
@@ -87,7 +100,25 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Prepare template parameters
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`.trim(),
+        from_email: formData.email,
+        phone: formData.mobileNo,
+        message: formData.message,
+        to_email: 'glenpabico19@gmail.com' // This will be used in your template
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully!', result);
+
       setIsSubmitted(true);
       setFormData({ 
         firstName: '', 
@@ -103,7 +134,10 @@ const Contact = () => {
         setIsSubmitted(false);
       }, 5000);
     } catch (error) {
-      setErrors({ submit: 'Failed to send message. Please try again.' });
+      console.error('EmailJS error:', error);
+      setErrors({ 
+        submit: `Failed to send message. Please try again or contact me directly at glenpabico19@gmail.com. Error: ${error.text || 'Check console for details'}` 
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -120,7 +154,7 @@ const Contact = () => {
             </div>
             
             <Row className="g-4">
-              {/* Contact Information Card - Modern Redesign */}
+              {/* Contact Information Card */}
               <Col md={5}>
                 <Card className="contact-info-modern">
                   <Card.Body className="p-4">
@@ -172,7 +206,7 @@ const Contact = () => {
                 </Card>
               </Col>
 
-              {/* Contact Form - Modern Redesign */}
+              {/* Contact Form */}
               <Col md={7}>
                 <Card className="contact-form-modern">
                   <Card.Body className="p-4">
@@ -183,13 +217,13 @@ const Contact = () => {
 
                     {isSubmitted && (
                       <Alert variant="success" className="modern-alert success">
-                        <strong>Message Sent!</strong> I'll get back to you within 24 hours.
+                        <strong>✅ Message Sent Successfully!</strong> I'll get back to you within 24 hours.
                       </Alert>
                     )}
 
                     {errors.submit && (
                       <Alert variant="danger" className="modern-alert error">
-                        {errors.submit}
+                        <strong>Error:</strong> {errors.submit}
                       </Alert>
                     )}
 
@@ -237,27 +271,52 @@ const Contact = () => {
 
                       <Row className="g-3">
                         <Col md={6}>
-                          <Form.Group className="form-group-modern">
-                            <Form.Label className="form-label-modern">
-                              Mobile Number <span className="required">*</span>
-                            </Form.Label>
-                            <Form.Control
-                              type="tel"
-                              name="mobileNo"
-                              placeholder="Your mobile number"
-                              value={formData.mobileNo}
-                              onChange={handleInputChange}
-                              onBlur={(e) => {
-                                const error = validateField('mobileNo', e.target.value);
-                                setErrors(prev => ({ ...prev, mobileNo: error }));
-                              }}
-                              isInvalid={!!errors.mobileNo}
-                              className="form-input-modern"
-                            />
-                            <Form.Control.Feedback type="invalid" className="form-error-modern">
-                              {errors.mobileNo}
-                            </Form.Control.Feedback>
-                          </Form.Group>
+                         <Form.Group className="form-group-modern">
+  <Form.Label className="form-label-modern">
+    Mobile Number <span className="required">*</span>
+  </Form.Label>
+  <Form.Control
+    type="tel"
+    name="mobileNo"
+    placeholder="09123456789"
+    value={formData.mobileNo}
+    onChange={(e) => {
+      // Remove all non-numeric characters
+      const numbersOnly = e.target.value.replace(/\D/g, '');
+      
+      // Limit to 11 digits
+      if (numbersOnly.length <= 11) {
+        setFormData(prev => ({
+          ...prev,
+          mobileNo: numbersOnly
+        }));
+      }
+      
+      // Clear error when user types
+      if (errors.mobileNo) {
+        setErrors(prev => ({
+          ...prev,
+          mobileNo: ''
+        }));
+      }
+    }}
+    onBlur={(e) => {
+      const error = validateField('mobileNo', e.target.value);
+      setErrors(prev => ({ ...prev, mobileNo: error }));
+    }}
+    isInvalid={!!errors.mobileNo}
+    className="form-input-modern"
+    onKeyPress={(e) => {
+      // Prevent typing of non-numeric characters
+      if (!/[0-9]/.test(e.key)) {
+        e.preventDefault();
+      }
+    }}
+  />
+  <Form.Control.Feedback type="invalid" className="form-error-modern">
+    {errors.mobileNo}
+  </Form.Control.Feedback>
+</Form.Group>
                         </Col>
                         <Col md={6}>
                           <Form.Group className="form-group-modern">
@@ -317,8 +376,8 @@ const Contact = () => {
                           className="form-input-modern"
                         />
                         <Form.Control.Feedback type="invalid" className="form-error-modern">
-                          {errors.spamCheck}
-                        </Form.Control.Feedback>
+                              {errors.spamCheck}
+                            </Form.Control.Feedback>
                         <Form.Text className="form-help-modern">
                           Type "webdesign" to verify you're human
                         </Form.Text>
