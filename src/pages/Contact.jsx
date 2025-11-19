@@ -1,17 +1,25 @@
 // src/pages/Contact.jsx
-import { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-import emailjs from '@emailjs/browser';
-import './Contact.css';
+import { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  Alert,
+} from "react-bootstrap";
+import emailjs from "@emailjs/browser";
+import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    mobileNo: '',
-    email: '',
-    message: '',
-    spamCheck: ''
+    firstName: "",
+    lastName: "",
+    mobileNo: "",
+    email: "",
+    message: "",
+    spamCheck: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -20,41 +28,45 @@ const Contact = () => {
 
   // ⚡ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚡
   const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_0sjyrne',        // From Email Services
-    TEMPLATE_ID: 'template_x8zegml',     // From Email Templates
-    PUBLIC_KEY: 'SSeudS9KSMQLCvQjV'           // From API Keys
+    SERVICE_ID: "service_0sjyrne", // From Email Services
+    TEMPLATE_ID: "template_x8zegml", // From Email Templates
+    PUBLIC_KEY: "SSeudS9KSMQLCvQjV", // From API Keys
   };
 
   const validateField = (name, value) => {
-    let error = '';
+    let error = "";
 
     switch (name) {
-      case 'firstName':
+      case "firstName":
         if (value.trim().length < 1) {
-          error = 'First name is required';
+          error = "First name is required";
         }
         break;
-case 'mobileNo':
-  // Philippine mobile number validation - now expecting numbers only
-  const phoneRegex = /^[0-9]{10,11}$/;
-  let normalizedPhone = value;
-  
-  // Remove any non-numeric characters (just in case)
-  normalizedPhone = normalizedPhone.replace(/\D/g, '');
-  
-  if (!phoneRegex.test(normalizedPhone) || !normalizedPhone.startsWith('9')) {
-    error = 'Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 9)';
-  }
-  break;
-      case 'email':
+      case "mobileNo":
+        // Philippine mobile number validation - now expecting numbers only
+        const phoneRegex = /^[0-9]{10,11}$/;
+        let normalizedPhone = value;
+
+        // Remove any non-numeric characters (just in case)
+        normalizedPhone = normalizedPhone.replace(/\D/g, "");
+
+        if (
+          !phoneRegex.test(normalizedPhone) ||
+          !normalizedPhone.startsWith("9")
+        ) {
+          error =
+            "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 9)";
+        }
+        break;
+      case "email":
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
-          error = 'Please enter a valid email address';
+          error = "Please enter a valid email address";
         }
         break;
-      case 'spamCheck':
-        if (value !== 'webdesign') {
-          error = 'Please type the correct characters';
+      case "spamCheck":
+        if (value !== "webdesign") {
+          error = "Please type the correct characters";
         }
         break;
       default:
@@ -66,25 +78,25 @@ case 'mobileNo':
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const newErrors = {};
-    Object.keys(formData).forEach(key => {
-      if (key !== 'lastName') {
+    Object.keys(formData).forEach((key) => {
+      if (key !== "lastName") {
         const error = validateField(key, formData[key]);
         if (error) {
           newErrors[key] = error;
@@ -106,7 +118,7 @@ case 'mobileNo':
         from_email: formData.email,
         phone: formData.mobileNo,
         message: formData.message,
-        to_email: 'glenpabico19@gmail.com' // This will be used in your template
+        to_email: "glenpabico19@gmail.com", // This will be used in your template
       };
 
       // Send email using EmailJS
@@ -117,26 +129,28 @@ case 'mobileNo':
         EMAILJS_CONFIG.PUBLIC_KEY
       );
 
-      console.log('Email sent successfully!', result);
+      console.log("Email sent successfully!", result);
 
       setIsSubmitted(true);
-      setFormData({ 
-        firstName: '', 
-        lastName: '', 
-        mobileNo: '', 
-        email: '', 
-        message: '',
-        spamCheck: ''
+      setFormData({
+        firstName: "",
+        lastName: "",
+        mobileNo: "",
+        email: "",
+        message: "",
+        spamCheck: "",
       });
       setErrors({});
-      
+
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
     } catch (error) {
-      console.error('EmailJS error:', error);
-      setErrors({ 
-        submit: `Failed to send message. Please try again or contact me directly at glenpabico19@gmail.com. Error: ${error.text || 'Check console for details'}` 
+      console.error("EmailJS error:", error);
+      setErrors({
+        submit: `Failed to send message. Please try again or contact me directly at glenpabico19@gmail.com. Error: ${
+          error.text || "Check console for details"
+        }`,
       });
     } finally {
       setIsSubmitting(false);
@@ -149,17 +163,23 @@ case 'mobileNo':
         <Row className="justify-content-center">
           <Col lg={10}>
             <div className="contact-modern-header text-center mb-5">
-              <h1 className="contact-modern-title">Let's Create Something Amazing</h1>
-              <p className="contact-modern-subtitle">Get in touch and let's discuss your project</p>
+              <h1 className="contact-modern-title">
+                Let's Create Something Amazing
+              </h1>
+              <p className="contact-modern-subtitle">
+                Get in touch and let's discuss your project
+              </p>
             </div>
-            
+
             <Row className="g-4">
               {/* Contact Information Card */}
               <Col md={5}>
                 <Card className="contact-info-modern">
                   <Card.Body className="p-4">
                     <div className="contact-info-header">
-                      <h3 className="contact-info-title">Contact Information</h3>
+                      <h3 className="contact-info-title">
+                        Contact Information
+                      </h3>
                       <p className="contact-info-description">
                         Reach out through any of these channels
                       </p>
@@ -182,7 +202,9 @@ case 'mobileNo':
                         </div>
                         <div className="contact-details">
                           <h4 className="contact-item-title">Location</h4>
-                          <p className="contact-item-text">Daet, Camarines Norte 4600</p>
+                          <p className="contact-item-text">
+                            Daet, Camarines Norte 4600
+                          </p>
                         </div>
                       </div>
 
@@ -192,8 +214,12 @@ case 'mobileNo':
                         </div>
                         <div className="contact-details">
                           <h4 className="contact-item-title">Email</h4>
-                          <p className="contact-item-text">glenpabico19@gmail.com</p>
-                          <p className="contact-item-text">glenpabico20@gmail.com</p>
+                          <p className="contact-item-text">
+                            glenpabico19@gmail.com
+                          </p>
+                          <p className="contact-item-text">
+                            glenpabico20@gmail.com
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -212,12 +238,15 @@ case 'mobileNo':
                   <Card.Body className="p-4">
                     <div className="form-header">
                       <h3 className="form-title">Send a Message</h3>
-                      <p className="form-description">Fill out the form below and I'll get back to you soon</p>
+                      <p className="form-description">
+                        Fill out the form below and I'll get back to you soon
+                      </p>
                     </div>
 
                     {isSubmitted && (
                       <Alert variant="success" className="modern-alert success">
-                        <strong>✅ Message Sent Successfully!</strong> I'll get back to you within 24 hours.
+                        <strong>✅ Message Sent Successfully!</strong> I'll get
+                        back to you within 24 hours.
                       </Alert>
                     )}
 
@@ -241,13 +270,22 @@ case 'mobileNo':
                               value={formData.firstName}
                               onChange={handleInputChange}
                               onBlur={(e) => {
-                                const error = validateField('firstName', e.target.value);
-                                setErrors(prev => ({ ...prev, firstName: error }));
+                                const error = validateField(
+                                  "firstName",
+                                  e.target.value
+                                );
+                                setErrors((prev) => ({
+                                  ...prev,
+                                  firstName: error,
+                                }));
                               }}
                               isInvalid={!!errors.firstName}
                               className="form-input-modern"
                             />
-                            <Form.Control.Feedback type="invalid" className="form-error-modern">
+                            <Form.Control.Feedback
+                              type="invalid"
+                              className="form-error-modern"
+                            >
                               {errors.firstName}
                             </Form.Control.Feedback>
                           </Form.Group>
@@ -271,52 +309,64 @@ case 'mobileNo':
 
                       <Row className="g-3">
                         <Col md={6}>
-                         <Form.Group className="form-group-modern">
-  <Form.Label className="form-label-modern">
-    Mobile Number <span className="required">*</span>
-  </Form.Label>
-  <Form.Control
-    type="tel"
-    name="mobileNo"
-    placeholder="09123456789"
-    value={formData.mobileNo}
-    onChange={(e) => {
-      // Remove all non-numeric characters
-      const numbersOnly = e.target.value.replace(/\D/g, '');
-      
-      // Limit to 11 digits
-      if (numbersOnly.length <= 11) {
-        setFormData(prev => ({
-          ...prev,
-          mobileNo: numbersOnly
-        }));
-      }
-      
-      // Clear error when user types
-      if (errors.mobileNo) {
-        setErrors(prev => ({
-          ...prev,
-          mobileNo: ''
-        }));
-      }
-    }}
-    onBlur={(e) => {
-      const error = validateField('mobileNo', e.target.value);
-      setErrors(prev => ({ ...prev, mobileNo: error }));
-    }}
-    isInvalid={!!errors.mobileNo}
-    className="form-input-modern"
-    onKeyPress={(e) => {
-      // Prevent typing of non-numeric characters
-      if (!/[0-9]/.test(e.key)) {
-        e.preventDefault();
-      }
-    }}
-  />
-  <Form.Control.Feedback type="invalid" className="form-error-modern">
-    {errors.mobileNo}
-  </Form.Control.Feedback>
-</Form.Group>
+                          <Form.Group className="form-group-modern">
+                            <Form.Label className="form-label-modern">
+                              Mobile Number <span className="required">*</span>
+                            </Form.Label>
+                            <Form.Control
+                              type="tel"
+                              name="mobileNo"
+                              placeholder="09123456789"
+                              value={formData.mobileNo}
+                              onChange={(e) => {
+                                // Remove all non-numeric characters
+                                const numbersOnly = e.target.value.replace(
+                                  /\D/g,
+                                  ""
+                                );
+
+                                // Limit to 11 digits
+                                if (numbersOnly.length <= 11) {
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    mobileNo: numbersOnly,
+                                  }));
+                                }
+
+                                // Clear error when user types
+                                if (errors.mobileNo) {
+                                  setErrors((prev) => ({
+                                    ...prev,
+                                    mobileNo: "",
+                                  }));
+                                }
+                              }}
+                              onBlur={(e) => {
+                                const error = validateField(
+                                  "mobileNo",
+                                  e.target.value
+                                );
+                                setErrors((prev) => ({
+                                  ...prev,
+                                  mobileNo: error,
+                                }));
+                              }}
+                              isInvalid={!!errors.mobileNo}
+                              className="form-input-modern"
+                              onKeyPress={(e) => {
+                                // Prevent typing of non-numeric characters
+                                if (!/[0-9]/.test(e.key)) {
+                                  e.preventDefault();
+                                }
+                              }}
+                            />
+                            <Form.Control.Feedback
+                              type="invalid"
+                              className="form-error-modern"
+                            >
+                              {errors.mobileNo}
+                            </Form.Control.Feedback>
+                          </Form.Group>
                         </Col>
                         <Col md={6}>
                           <Form.Group className="form-group-modern">
@@ -330,13 +380,22 @@ case 'mobileNo':
                               value={formData.email}
                               onChange={handleInputChange}
                               onBlur={(e) => {
-                                const error = validateField('email', e.target.value);
-                                setErrors(prev => ({ ...prev, email: error }));
+                                const error = validateField(
+                                  "email",
+                                  e.target.value
+                                );
+                                setErrors((prev) => ({
+                                  ...prev,
+                                  email: error,
+                                }));
                               }}
                               isInvalid={!!errors.email}
                               className="form-input-modern"
                             />
-                            <Form.Control.Feedback type="invalid" className="form-error-modern">
+                            <Form.Control.Feedback
+                              type="invalid"
+                              className="form-error-modern"
+                            >
                               {errors.email}
                             </Form.Control.Feedback>
                           </Form.Group>
@@ -369,15 +428,24 @@ case 'mobileNo':
                           value={formData.spamCheck}
                           onChange={handleInputChange}
                           onBlur={(e) => {
-                            const error = validateField('spamCheck', e.target.value);
-                            setErrors(prev => ({ ...prev, spamCheck: error }));
+                            const error = validateField(
+                              "spamCheck",
+                              e.target.value
+                            );
+                            setErrors((prev) => ({
+                              ...prev,
+                              spamCheck: error,
+                            }));
                           }}
                           isInvalid={!!errors.spamCheck}
                           className="form-input-modern"
                         />
-                        <Form.Control.Feedback type="invalid" className="form-error-modern">
-                              {errors.spamCheck}
-                            </Form.Control.Feedback>
+                        <Form.Control.Feedback
+                          type="invalid"
+                          className="form-error-modern"
+                        >
+                          {errors.spamCheck}
+                        </Form.Control.Feedback>
                         <Form.Text className="form-help-modern">
                           Type "webdesign" to verify you're human
                         </Form.Text>
@@ -391,11 +459,14 @@ case 'mobileNo':
                         >
                           {isSubmitting ? (
                             <>
-                              <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                              <span
+                                className="spinner-border spinner-border-sm me-2"
+                                role="status"
+                              ></span>
                               Sending Message...
                             </>
                           ) : (
-                            'Send Message'
+                            "Send Message"
                           )}
                         </Button>
                       </div>
