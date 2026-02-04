@@ -64,7 +64,7 @@ const About = () => {
       title: "Information Technology Intern",
       period: "Feb 2023 – May 2023",
       description:
-        "I work as UI/UX and Web Front End Developer Intern at DILG - Provincial Office Camarines Norte.",
+        "UI/UX and Web Front-End Developer Intern at DILG – Provincial Office of Camarines Norte, crafting intuitive user interfaces and responsive web experiences.",
       icon: "laptop-code", // Development internship
       tags: ["UI/UX Design", "Frontend Development", "React", "Web Design"],
       type: "Internship",
@@ -73,7 +73,7 @@ const About = () => {
       title: "Computer System Servicing (Intern)",
       period: "Jan 2019 – Mar 2019",
       description:
-        "Ullamco labors nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "I become a Computer System Servicing Intern at the Provincial Capitol of Camarines Norte, providing technical, hardware, and software support to ensure the proper operation and maintenance of office computer systems and IT equipment.",
       icon: "cogs", // Hardware/technical role
       tags: ["Hardware", "System Repair", "Technical Support", "Maintenance"],
       type: "Internship",
@@ -160,7 +160,7 @@ const About = () => {
               <Button
                 variant="primary"
                 className="accent-button rounded-pill px-4 py-2"
-                href="/your-resume.pdf"
+                href="/Glen Pabico_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

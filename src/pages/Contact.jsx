@@ -1,5 +1,5 @@
 // src/pages/Contact.jsx
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Container,
   Row,
@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 import "./Contact.css";
 
 const Contact = () => {
@@ -25,12 +26,15 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
+
+    const captchaRef = useRef(null);
 
   // ⚡ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚡
   const EMAILJS_CONFIG = {
-    SERVICE_ID: "service_0sjyrne", // From Email Services
-    TEMPLATE_ID: "template_x8zegml", // From Email Templates
-    PUBLIC_KEY: "SSeudS9KSMQLCvQjV", // From API Keys
+    SERVICE_ID: "service_g9jxpyf", // From Email Services
+    TEMPLATE_ID: "template_sgfiidc", // From Email Templates
+    PUBLIC_KEY: "tWnS5svW27s4X7y2m", // From API Keys
   };
 
   const validateField = (name, value) => {
@@ -43,21 +47,15 @@ const Contact = () => {
         }
         break;
       case "mobileNo":
-        // Philippine mobile number validation - now expecting numbers only
-        const phoneRegex = /^[0-9]{10,11}$/;
-        let normalizedPhone = value;
+  // Remove non-numeric characters
+  const normalizedPhone = value.replace(/\D/g, "");
 
-        // Remove any non-numeric characters (just in case)
-        normalizedPhone = normalizedPhone.replace(/\D/g, "");
+  if (normalizedPhone.length !== 11 || !normalizedPhone.startsWith("09")) {
+    error =
+      "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 09)";
+  }
+  break;
 
-        if (
-          !phoneRegex.test(normalizedPhone) ||
-          !normalizedPhone.startsWith("9")
-        ) {
-          error =
-            "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 9)";
-        }
-        break;
       case "email":
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
@@ -94,15 +92,17 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate required fields
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       if (key !== "lastName") {
         const error = validateField(key, formData[key]);
-        if (error) {
-          newErrors[key] = error;
-        }
+        if (error) newErrors[key] = error;
       }
     });
+
+    // Validate captcha
+    if (!captchaToken) newErrors.captcha = "Please verify that you are not a robot";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -112,24 +112,20 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Prepare template parameters
       const templateParams = {
-        from_name: `${formData.firstName} ${formData.lastName}`.trim(),
-        from_email: formData.email,
-        phone: formData.mobileNo,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        mobile: formData.mobileNo,
         message: formData.message,
-        to_email: "glenpabico19@gmail.com", // This will be used in your template
       };
 
-      // Send email using EmailJS
-      const result = await emailjs.send(
+      await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
         EMAILJS_CONFIG.PUBLIC_KEY
       );
-
-      console.log("Email sent successfully!", result);
 
       setIsSubmitted(true);
       setFormData({
@@ -138,24 +134,23 @@ const Contact = () => {
         mobileNo: "",
         email: "",
         message: "",
-        spamCheck: "",
       });
       setErrors({});
+      setCaptchaToken(null);
+      if (captchaRef.current) captchaRef.current.reset();
 
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+      setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error("EmailJS error:", error);
       setErrors({
-        submit: `Failed to send message. Please try again or contact me directly at glenpabico19@gmail.com. Error: ${
-          error.text || "Check console for details"
-        }`,
+        submit:
+          "Failed to send message. Please try again or contact me directly at glenpabico20@gmail.com",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className="contact-modern-wrapper" id="contact">
@@ -245,7 +240,7 @@ const Contact = () => {
 
                     {isSubmitted && (
                       <Alert variant="success" className="modern-alert success">
-                        <strong>✅ Message Sent Successfully!</strong> I'll get
+                        <strong>Message Sent Successfully!</strong> I'll get
                         back to you within 24 hours.
                       </Alert>
                     )}
@@ -417,39 +412,19 @@ const Contact = () => {
                         />
                       </Form.Group>
 
-                      <Form.Group className="form-group-modern">
-                        <Form.Label className="form-label-modern">
-                          Spam Protection <span className="required">*</span>
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="spamCheck"
-                          placeholder="Type 'webdesign' to continue"
-                          value={formData.spamCheck}
-                          onChange={handleInputChange}
-                          onBlur={(e) => {
-                            const error = validateField(
-                              "spamCheck",
-                              e.target.value
-                            );
-                            setErrors((prev) => ({
-                              ...prev,
-                              spamCheck: error,
-                            }));
-                          }}
-                          isInvalid={!!errors.spamCheck}
-                          className="form-input-modern"
+                     {/* Google reCAPTCHA */}
+                      <Form.Group className="mt-3">
+                        <ReCAPTCHA
+                          ref={captchaRef}
+                          sitekey="YOUR_SITE_KEY_HERE"
+                          onChange={(token) => setCaptchaToken(token)}
+                          onExpired={() => setCaptchaToken(null)}
                         />
-                        <Form.Control.Feedback
-                          type="invalid"
-                          className="form-error-modern"
-                        >
-                          {errors.spamCheck}
-                        </Form.Control.Feedback>
-                        <Form.Text className="form-help-modern">
-                          Type "webdesign" to verify you're human
-                        </Form.Text>
+                        {errors.captcha && (
+                          <div className="text-danger mt-2">{errors.captcha}</div>
+                        )}
                       </Form.Group>
+
 
                       <div className="form-actions">
                         <Button

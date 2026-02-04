@@ -1,60 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
-import project1 from "../assets/trianglify-lowres.png";
-import project2 from "../assets/trianglify-lowres.png";
-import project3 from "../assets/trianglify-lowres.png";
+import project1 from "../assets/2026-02-04 142840.png";
+import project2 from "../assets/2026-02-04 143026.png";
+import project3 from "../assets/2026-02-04 145011.png";
+import project4 from "../assets/2026-02-04 145159.png";
+import project5 from "../assets/2026-02-04 145300.png";
 
 const projects = [
   {
-    title: "Promotional Landing Page",
+    title: "Promotional Architectural Website",
     description:
       "Teamed up with a designer to create a promotional webpage for Adventure Time. Fully responsive with dynamic content and newsletter integration.",
-    year: "2023",
-    role: "Front-end Developer",
+    year: "2025",
+    role: "Full Stack Developer",
     img: project1,
-    tag: "Conceptual Work",
-    link: "#",
+    tag: "Client Project",
+    link: "https://www.jcroblesdesignandbuild.com",
   },
   {
-    title: "E-commerce Dashboard",
+    title: "Historical Website",
     description:
       "Developed a sleek, responsive e-commerce dashboard with live analytics, product management, and clean interface.",
-    year: "2024",
+    year: "2025",
     role: "Front-end Developer",
     img: project2,
     tag: "Client Project",
-    link: "#",
+    link: "https://www.e-tuklas.net",
   },
   {
-    title: "Portfolio Redesign",
+    title: "Digital Library",
     description:
       "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
-    year: "2024",
-    role: "Full Stack Developer",
+    year: "2023",
+    role: "Front-End Developer",
     img: project3,
-    tag: "Personal Project",
-    link: "#",
+    tag: "Internship Project",
+    link: "/",
   },
   {
-    title: "Portfolio Redesign",
+    title: "Facilities Reservation and Information Portal",
     description:
       "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
-    year: "2024",
-    role: "Full Stack Developer",
-    img: project3,
+    year: "2023",
+    role: "Front-End Developer",
+    img: project4,
     tag: "Personal Project",
-    link: "#",
+    link: "/",
   },
   {
-    title: "Portfolio Redesign",
+    title: "Learning and Management Web App",
     description:
       "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
-    year: "2024",
-    role: "Full Stack Developer",
-    img: project3,
-    tag: "Personal Project",
-    link: "#",
+    year: "2023",
+    role: "Front-End Developer",
+    img: project5,
+    tag: "Capstone Project",
+    link: "/",
   },
 ];
 
