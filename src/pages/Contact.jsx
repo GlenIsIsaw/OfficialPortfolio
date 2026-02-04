@@ -412,18 +412,15 @@ const Contact = () => {
                         />
                       </Form.Group>
 
-                     {/* Google reCAPTCHA */}
-                      <Form.Group className="mt-3">
-                        <ReCAPTCHA
-                          ref={captchaRef}
-                          sitekey="YOUR_SITE_KEY_HERE"
-                          onChange={(token) => setCaptchaToken(token)}
-                          onExpired={() => setCaptchaToken(null)}
-                        />
-                        {errors.captcha && (
-                          <div className="text-danger mt-2">{errors.captcha}</div>
-                        )}
-                      </Form.Group>
+                    <Form.Group className="captcha-wrapper">
+  <ReCAPTCHA
+    ref={captchaRef}
+    sitekey="YOUR_SITE_KEY_HERE"
+    onChange={(token) => setCaptchaToken(token)}
+    onExpired={() => setCaptchaToken(null)}
+  />
+</Form.Group>
+
 
 
                       <div className="form-actions">

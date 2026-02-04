@@ -126,7 +126,7 @@ const PortfolioNavbar = () => {
               <Offcanvas.Header closeButton className="text-white">
                 <Offcanvas.Title
                   id="offcanvasNavbarLabel"
-                  className="text-white"
+                  className="navbar-brand text-black"
                 >
                   Glen Pabico
                 </Offcanvas.Title>
