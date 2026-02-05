@@ -28,7 +28,7 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
 
-    const captchaRef = useRef(null);
+  const captchaRef = useRef(null);
 
   // ⚡ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚡
   const EMAILJS_CONFIG = {
@@ -47,14 +47,17 @@ const Contact = () => {
         }
         break;
       case "mobileNo":
-  // Remove non-numeric characters
-  const normalizedPhone = value.replace(/\D/g, "");
+        // Remove non-numeric characters
+        const normalizedPhone = value.replace(/\D/g, "");
 
-  if (normalizedPhone.length !== 11 || !normalizedPhone.startsWith("09")) {
-    error =
-      "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 09)";
-  }
-  break;
+        if (
+          normalizedPhone.length !== 11 ||
+          !normalizedPhone.startsWith("09")
+        ) {
+          error =
+            "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 09)";
+        }
+        break;
 
       case "email":
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -102,7 +105,8 @@ const Contact = () => {
     });
 
     // Validate captcha
-    if (!captchaToken) newErrors.captcha = "Please verify that you are not a robot";
+    if (!captchaToken)
+      newErrors.captcha = "Please verify that you are not a robot";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -124,7 +128,7 @@ const Contact = () => {
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
-        EMAILJS_CONFIG.PUBLIC_KEY
+        EMAILJS_CONFIG.PUBLIC_KEY,
       );
 
       setIsSubmitted(true);
@@ -150,7 +154,6 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-
 
   return (
     <div className="contact-modern-wrapper" id="contact">
@@ -267,7 +270,7 @@ const Contact = () => {
                               onBlur={(e) => {
                                 const error = validateField(
                                   "firstName",
-                                  e.target.value
+                                  e.target.value,
                                 );
                                 setErrors((prev) => ({
                                   ...prev,
@@ -317,7 +320,7 @@ const Contact = () => {
                                 // Remove all non-numeric characters
                                 const numbersOnly = e.target.value.replace(
                                   /\D/g,
-                                  ""
+                                  "",
                                 );
 
                                 // Limit to 11 digits
@@ -339,7 +342,7 @@ const Contact = () => {
                               onBlur={(e) => {
                                 const error = validateField(
                                   "mobileNo",
-                                  e.target.value
+                                  e.target.value,
                                 );
                                 setErrors((prev) => ({
                                   ...prev,
@@ -377,7 +380,7 @@ const Contact = () => {
                               onBlur={(e) => {
                                 const error = validateField(
                                   "email",
-                                  e.target.value
+                                  e.target.value,
                                 );
                                 setErrors((prev) => ({
                                   ...prev,
@@ -412,16 +415,14 @@ const Contact = () => {
                         />
                       </Form.Group>
 
-                    <Form.Group className="captcha-wrapper">
-  <ReCAPTCHA
-    ref={captchaRef}
-    sitekey="6LdsA2EsAAAAAK5XA9f_iwUqGOfx6DcMCTLe8Sha"
-    onChange={(token) => setCaptchaToken(token)}
-    onExpired={() => setCaptchaToken(null)}
-  />
-</Form.Group>
-
-
+                      <Form.Group className="captcha-wrapper">
+                        <ReCAPTCHA
+                          ref={captchaRef}
+                          sitekey="6LdsA2EsAAAAAK5XA9f_iwUqGOfx6DcMCTLe8Sha"
+                          onChange={(token) => setCaptchaToken(token)}
+                          onExpired={() => setCaptchaToken(null)}
+                        />
+                      </Form.Group>
 
                       <div className="form-actions">
                         <Button
