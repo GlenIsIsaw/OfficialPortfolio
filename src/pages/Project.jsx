@@ -11,7 +11,7 @@ const projects = [
   {
     title: "Promotional Architectural Website",
     description:
-      "Teamed up with a designer to create a promotional webpage for Adventure Time. Fully responsive with dynamic content and newsletter integration.",
+      "A modern architectural promotion website designed to showcase projects, services, and design concepts with a clean and professional layout. It features a built-in emailing system that allows clients to easily send inquiries and project details directly through the site. The platform enhances communication while presenting architectural works in a visually engaging and organized manner.",
     year: "2025",
     role: "Full Stack Developer",
     img: project1,
@@ -19,19 +19,19 @@ const projects = [
     link: "https://www.jcroblesdesignandbuild.com",
   },
   {
-    title: "Historical Website",
+    title: "E - Tuklas Historical and Informational Website",
     description:
-      "Developed a sleek, responsive e-commerce dashboard with live analytics, product management, and clean interface.",
+      "Informational website dedicated to the history of Capalonga’s Hesus Nazareno, highlighting its cultural, religious, and historical significance. The site presents documented stories, images, and milestones to educate visitors and preserve local heritage. It also serves as a digital platform to promote awareness and appreciation of the devotion within and beyond the community.",
     year: "2025",
-    role: "Front-end Developer",
+    role: "Front-End Developer",
     img: project2,
     tag: "Client Project",
     link: "https://www.e-tuklas.net",
   },
   {
-    title: "Digital Library",
+    title: "DILG iGoals - Digital Library",
     description:
-      "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
+      "A digital library system developed for a government agency to securely archive, organize, and manage files and official records. The platform improves document accessibility while maintaining proper record classification and storage. It supports efficient retrieval and long-term preservation of important government documents.",
     year: "2023",
     role: "Front-End Developer",
     img: project3,
@@ -41,7 +41,7 @@ const projects = [
   {
     title: "Facilities Reservation and Information Portal",
     description:
-      "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
+      "A Facilities Reservation and Information Portal designed for a barangay to support its transition toward digitalization at the grassroots level. The system allows residents to view facility information, check availability, and submit reservation requests online. It promotes efficient resource management while improving accessibility and transparency in local government services.",
     year: "2023",
     role: "Front-End Developer",
     img: project4,
@@ -49,9 +49,9 @@ const projects = [
     link: "/",
   },
   {
-    title: "Learning and Management Web App",
+    title: "CNSC - Learning and Management Web App",
     description:
-      "Created a modern, accessible portfolio site using React and Bootstrap, focusing on clean layout and smooth animations.",
+      "A web-based learning and management system designed exclusively for a university to support a fully digital academic environment. The platform streamlines learning delivery, faculty management, and administrative processes for professors and academic staff. It enables a smooth transition toward a more efficient, centralized, and digitally driven university system.",
     year: "2023",
     role: "Front-End Developer",
     img: project5,
