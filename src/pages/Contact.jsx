@@ -16,11 +16,10 @@ import "./Contact.css";
 const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
+    lastName: "", // optional
     mobileNo: "",
     email: "",
     message: "",
-    spamCheck: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -30,13 +29,14 @@ const Contact = () => {
 
   const captchaRef = useRef(null);
 
-  // ⚡ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚡
+  // ⚡ Replace these with your actual EmailJS credentials ⚡
   const EMAILJS_CONFIG = {
-    SERVICE_ID: "service_g9jxpyf", // From Email Services
-    TEMPLATE_ID: "template_sgfiidc", // From Email Templates
-    PUBLIC_KEY: "tWnS5svW27s4X7y2m", // From API Keys
+    SERVICE_ID: "service_g9jxpyf",
+    TEMPLATE_ID: "template_sgfiidc",
+    PUBLIC_KEY: "tWnS5svW27s4X7y2m",
   };
 
+  // Validation function for each field
   const validateField = (name, value) => {
     let error = "";
 
@@ -46,16 +46,12 @@ const Contact = () => {
           error = "First name is required";
         }
         break;
-      case "mobileNo":
-        // Remove non-numeric characters
-        const normalizedPhone = value.replace(/\D/g, "");
 
-        if (
-          normalizedPhone.length !== 11 ||
-          !normalizedPhone.startsWith("09")
-        ) {
+      case "mobileNo":
+        const normalizedPhone = value.replace(/\D/g, "");
+        if (normalizedPhone.length !== 11 || !normalizedPhone.startsWith("09")) {
           error =
-            "Please enter a valid Philippine mobile number (e.g., 09123456789 - 11 digits starting with 09)";
+            "Please enter a valid Philippine mobile number (e.g., 09123456789)";
         }
         break;
 
@@ -65,11 +61,7 @@ const Contact = () => {
           error = "Please enter a valid email address";
         }
         break;
-      case "spamCheck":
-        if (value !== "webdesign") {
-          error = "Please type the correct characters";
-        }
-        break;
+
       default:
         break;
     }
@@ -77,6 +69,7 @@ const Contact = () => {
     return error;
   };
 
+  // Update state on input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -84,6 +77,7 @@ const Contact = () => {
       [name]: value,
     }));
 
+    // Clear error while typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -95,19 +89,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
+    // -----------------------------------------------
+    // 🔹 FIX: Explicitly validate only required fields
+    // -----------------------------------------------
     const newErrors = {};
-    Object.keys(formData).forEach((key) => {
-      if (key !== "lastName") {
-        const error = validateField(key, formData[key]);
-        if (error) newErrors[key] = error;
-      }
+
+    // List of required fields
+    const requiredFields = ["firstName", "mobileNo", "email"];
+
+    requiredFields.forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
     });
 
     // Validate captcha
-    if (!captchaToken)
-      newErrors.captcha = "Please verify that you are not a robot";
+    if (!captchaToken) newErrors.captcha = "Please verify that you are not a robot";
 
+    // If there are any errors, stop submission
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -116,6 +114,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Prepare template params for EmailJS
       const templateParams = {
         first_name: formData.firstName,
         last_name: formData.lastName,
@@ -128,9 +127,10 @@ const Contact = () => {
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
-        EMAILJS_CONFIG.PUBLIC_KEY,
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
 
+      // Reset form and captcha
       setIsSubmitted(true);
       setFormData({
         firstName: "",
@@ -143,6 +143,7 @@ const Contact = () => {
       setCaptchaToken(null);
       if (captchaRef.current) captchaRef.current.reset();
 
+      // Hide success alert after 5s
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error("EmailJS error:", error);
