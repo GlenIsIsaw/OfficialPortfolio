@@ -415,7 +415,7 @@ const Contact = () => {
                     <Form.Group className="captcha-wrapper">
   <ReCAPTCHA
     ref={captchaRef}
-    sitekey="YOUR_SITE_KEY_HERE"
+    sitekey="6LdsA2EsAAAAAK5XA9f_iwUqGOfx6DcMCTLe8Sha"
     onChange={(token) => setCaptchaToken(token)}
     onExpired={() => setCaptchaToken(null)}
   />
